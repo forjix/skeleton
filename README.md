@@ -63,4 +63,4 @@ cp .env.example .env
 
 ## License
 
-MIT
+GPL-3.0
