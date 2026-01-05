@@ -1,0 +1,39 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+define('FORJIX_START', microtime(true));
+
+require __DIR__ . '/vendor/autoload.php';
+
+use Forjix\Console\Application;
+use Forjix\Console\Commands\CacheClear;
+use Forjix\Console\Commands\MakeController;
+use Forjix\Console\Commands\MakeMigration;
+use Forjix\Console\Commands\MakeMiddleware;
+use Forjix\Console\Commands\MakeModel;
+use Forjix\Console\Commands\Migrate;
+use Forjix\Console\Commands\MigrateRollback;
+use Forjix\Console\Commands\RoutesList;
+use Forjix\Console\Commands\Serve;
+
+$app = new Application('Forjix', '1.0.0');
+
+// Register built-in commands
+$app->addCommands([
+    new Serve(),
+    new MakeController(),
+    new MakeModel(),
+    new MakeMigration(),
+    new MakeMiddleware(),
+    new Migrate(),
+    new MigrateRollback(),
+    new RoutesList(),
+    new CacheClear(),
+]);
+
+// Run the console application
+$status = $app->run();
+
+exit($status);
